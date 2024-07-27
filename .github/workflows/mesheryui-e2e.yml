@@ -2,12 +2,6 @@ name: Meshery End-to-End Tests with mesheryui
 on:
   workflow_dispatch:
     inputs:
-      logLevel:
-        description: "Log level"
-        required: true
-        default: "warning"
-  workflow_call:
-    inputs:
       branch_name:
         required: true
         type: string
