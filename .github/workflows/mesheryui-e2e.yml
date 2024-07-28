@@ -25,7 +25,7 @@ jobs:
           repository: ${{ github.repository }}
           number: ${{ github.event.number || inputs.pr_number }}
           id: ui-test
-          message: "Starting [Meshery Extensions tests](https://github.com/DevRish/meshery/actions/runs/${{ github.run_id }})..."
+          message: "Starting [Meshery UI tests](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})..."
           recreate: true
   build-ui-and-server:
     uses: meshery/meshery/.github/workflows/build-ui-server-reusable-workflow.yml@master
@@ -117,13 +117,13 @@ jobs:
           mkdir -p /home/runner/.meshery/bin
           cd ./meshery-istio
           go run main.go &
-          sleep 300
+          sleep 120
       - name: Run meshery-consul
         run: |
           mkdir -p /home/runner/.meshery/bin
           cd ./meshery-consul
           go run main.go &
-          sleep 300
+          sleep 120
       - name: Run backend
         working-directory: meshery
         env:
@@ -134,7 +134,7 @@ jobs:
           cd server/cmd
           chmod +x ./main
           ./main &
-          sleep 300
+          sleep 120
       - name: Install dependencies
         working-directory: meshery
         run: make test-setup-ui
@@ -189,5 +189,5 @@ jobs:
           repository: ${{ github.repository }}
           number: ${{ github.event.number || inputs.pr_number }}
           id: ui-test
-          message: ":heavy_check_mark: Extension [test results](https://github.com/DevRish/meshery/actions/runs/${{ github.run_id }})."
+          message: ":heavy_check_mark: UI [test results](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})."
           append: true
